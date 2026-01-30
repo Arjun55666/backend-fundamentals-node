@@ -18,6 +18,7 @@ export const authMiddleware = (req, res, next) => {
   try {
     // 3️⃣ Verify token
     const decoded = jwt.verify(token, JWT_SECRET);
+    console.log("Decoded token:", decoded);//decode token for debugging
 
     // 4️⃣ Attach user info to request
     req.user = decoded;
@@ -28,3 +29,4 @@ export const authMiddleware = (req, res, next) => {
     return res.status(401).json({ message: "Invalid or expired token" });
   }
 };
+console.log("JWT_SECRET in middleware:", JWT_SECRET);
